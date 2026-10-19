@@ -1,0 +1,6 @@
+{
+  "name": "Aura Store",
+  "description": "A modern and full-featured online shopping store featuring product discovery, rich categories, interactive cart, coupon discounts, smooth multi-step checkout, and real-time order tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
