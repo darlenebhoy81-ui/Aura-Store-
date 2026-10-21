@@ -22,6 +22,6 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "Aura Store"
+rootProject.name = "Daily Shop"
 
 include(":app")

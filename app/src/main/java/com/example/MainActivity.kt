@@ -59,14 +59,14 @@ class MainActivity : ComponentActivity() {
     enableEdgeToEdge()
     setContent {
       MyApplicationTheme {
-        AuraStoreApp()
+        DailyShopApp()
       }
     }
   }
 }
 
 @Composable
-fun AuraStoreApp(
+fun DailyShopApp(
   viewModel: StoreViewModel = viewModel()
 ) {
   val currentScreen by viewModel.currentScreen.collectAsState()

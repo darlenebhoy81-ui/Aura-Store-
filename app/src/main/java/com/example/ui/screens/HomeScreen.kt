@@ -1,5 +1,7 @@
 package com.example.ui.screens
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,6 +24,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Bolt
+import androidx.compose.material.icons.filled.Chat
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material.icons.filled.Search
@@ -51,6 +54,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -91,6 +95,15 @@ fun HomeScreen(
     )
   }
 
+  val context = LocalContext.current
+  val whatsappNumber = "233203216862"
+
+  fun openWhatsApp() {
+    try {
+      context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://wa.me/$whatsappNumber")))
+    } catch (_: Exception) {}
+  }
+
   Column(
     modifier = modifier
       .fillMaxSize()
@@ -121,7 +134,7 @@ fun HomeScreen(
               Box(contentAlignment = Alignment.Center) {
                 Icon(
                   imageVector = Icons.Default.ShoppingBag,
-                  contentDescription = "Aura Store",
+                  contentDescription = "Daily Shop",
                   tint = Color.White,
                   modifier = Modifier.size(20.dp)
                 )
@@ -130,37 +143,62 @@ fun HomeScreen(
             Spacer(modifier = Modifier.width(10.dp))
             Column {
               Text(
-                text = "AURA STORE",
+                text = "DAILY SHOP",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Black,
                 letterSpacing = 1.5.sp,
                 color = MaterialTheme.colorScheme.onSurface
               )
               Text(
-                text = "Curated Lifestyle & Tech",
+                text = "Fresh Deals Every Day",
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
               )
             }
           }
 
-          // Filter Button with active indicator
-          IconButton(
-            onClick = { showFilterSheet = true },
-            modifier = Modifier.testTag("filter_btn")
-          ) {
-            Surface(
-              shape = CircleShape,
-              color = MaterialTheme.colorScheme.surfaceVariant,
-              modifier = Modifier.size(40.dp)
+          Row(verticalAlignment = Alignment.CenterVertically) {
+            // WhatsApp Quick Action
+            IconButton(
+              onClick = { openWhatsApp() },
+              modifier = Modifier.testTag("home_whatsapp_btn")
             ) {
-              Box(contentAlignment = Alignment.Center) {
-                Icon(
-                  imageVector = Icons.Default.FilterList,
-                  contentDescription = "Filters",
-                  tint = MaterialTheme.colorScheme.primary,
-                  modifier = Modifier.size(20.dp)
-                )
+              Surface(
+                shape = CircleShape,
+                color = Color(0xFF25D366),
+                modifier = Modifier.size(36.dp)
+              ) {
+                Box(contentAlignment = Alignment.Center) {
+                  Icon(
+                    imageVector = Icons.Default.Chat,
+                    contentDescription = "WhatsApp Daily Shop",
+                    tint = Color.White,
+                    modifier = Modifier.size(18.dp)
+                  )
+                }
+              }
+            }
+
+            Spacer(modifier = Modifier.width(4.dp))
+
+            // Filter Button with active indicator
+            IconButton(
+              onClick = { showFilterSheet = true },
+              modifier = Modifier.testTag("filter_btn")
+            ) {
+              Surface(
+                shape = CircleShape,
+                color = MaterialTheme.colorScheme.surfaceVariant,
+                modifier = Modifier.size(36.dp)
+              ) {
+                Box(contentAlignment = Alignment.Center) {
+                  Icon(
+                    imageVector = Icons.Default.FilterList,
+                    contentDescription = "Filters",
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(18.dp)
+                  )
+                }
               }
             }
           }
@@ -305,7 +343,7 @@ fun HomeScreen(
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                  text = "Use coupon AURA20 at checkout",
+                  text = "Use coupon DAILY20 at checkout",
                   color = Color.White.copy(alpha = 0.9f),
                   style = MaterialTheme.typography.bodySmall,
                   fontWeight = FontWeight.Medium

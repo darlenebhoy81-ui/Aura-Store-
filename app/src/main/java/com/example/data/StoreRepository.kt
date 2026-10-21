@@ -38,6 +38,7 @@ object StoreRepository {
   val savedAddresses: StateFlow<List<ShippingAddress>> = _savedAddresses.asStateFlow()
 
   val availableCoupons = listOf(
+    Coupon("DAILY20", discountPercent = 20.0, description = "20% off all orders at Daily Shop"),
     Coupon("AURA20", discountPercent = 20.0, description = "20% off all orders"),
     Coupon("SAVE15", fixedDiscount = 15.0, minSpend = 50.0, description = "$15 off orders over $50"),
     Coupon("FREESHIP", fixedDiscount = 9.99, description = "Free Express Shipping"),
